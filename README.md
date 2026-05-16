@@ -47,6 +47,9 @@ Download the file on your phone, then open it in **Chrome** or any browser.
 
 If you want to regenerate the file from the source JSON data:
 
+## Special thanks to below repot which has done 80% of the work 
+https://github.com/faisaltheparttimecoder/1000-duas-for-arafah
+
 ```bash
 python build_standalone_flashcards.py
 ```
