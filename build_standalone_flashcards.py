@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """
-Generates dist/duas_flashcards.html — fully standalone offline flashcard app.
+Generates index.html — fully standalone offline flashcard app.
 No CDN, no network, no external files. Open directly in Safari on iPhone.
 
 Usage:
     python build_standalone_flashcards.py
 
 Data source: ../duas_repo/data/
-Output:      dist/duas_flashcards.html
+Output:      index.html
 """
 import json
 import os
@@ -16,7 +16,7 @@ import sys
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, '..', 'duas_repo', 'data'))
 OUT_DIR = os.path.join(SCRIPT_DIR, 'dist')
-OUT_FILE = os.path.join(OUT_DIR, 'duas_flashcards.html')
+OUT_FILE = os.path.join(OUT_DIR, 'index.html')
 
 
 def load_json(name):

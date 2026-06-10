@@ -8,7 +8,7 @@ Single HTML file — no internet, no installation, no accounts required.
 ## How to Use on Your Phone
 
 ### Step 1 — Transfer the file
-Send `duas_flashcards.html` to your phone via **WhatsApp** or **Telegram** as a file attachment.
+Send `index.html` to your phone via **WhatsApp** or **Telegram** as a file attachment.
 
 ### Step 2 — Open the file
 Download the file on your phone, then open it in **Chrome** or any browser.
@@ -38,7 +38,7 @@ Download the file on your phone, then open it in **Chrome** or any browser.
 
 | File | Description |
 |------|-------------|
-| `dist/duas_flashcards.html` | The app — this is the only file you need |
+| `index.html` | The app — this is the only file you need |
 | `build_standalone_flashcards.py` | Build script to regenerate the HTML from source data |
 
 ---
