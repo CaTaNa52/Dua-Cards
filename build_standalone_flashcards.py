@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """
-Generates index.html — fully standalone offline flashcard app.
-No CDN, no network, no external files. Open directly in Safari on iPhone.
+index.html oluşturur — tamamen bağımsız çevrimdışı dua kartları uygulaması.
+CDN yok, ağ bağlantısı yok, harici dosya yok. iPhone’da doğrudan Safari ile açılabilir.
 
-Usage:
+Kullanım:
     python build_standalone_flashcards.py
 
-Data source: ../duas_repo/data/
-Output:      index.html
+Veri kaynağı: ../duas_repo/data/
+Çıktı:        index.html
 """
 import json
 import os
@@ -50,14 +50,14 @@ def normalize_duas():
 
 
 HTML_TEMPLATE = r'''<!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#064e3b">
-<title>1000 Duas – Arafah</title>
+<title>1000 Dua – Arefe</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
@@ -588,58 +588,58 @@ header{
   <div class="logo">
     <span class="logo-moon">☽</span>
     <div class="logo-text">
-      <span class="logo-title">1000 Duas</span>
-      <span class="logo-sub">Arafah Collection</span>
+      <span class="logo-title">1000 Dua</span>
+      <span class="logo-sub">Arefe Koleksiyonu</span>
     </div>
   </div>
   <div class="hdr-btns">
-    <button class="icon-btn" id="fsDownBtn" type="button" title="Smaller text">A-</button>
-    <button class="icon-btn" id="fsUpBtn"   type="button" title="Larger text">A+</button>
-    <button class="icon-btn" id="infoBtn"   type="button" title="About">ℹ</button>
-    <button class="icon-btn" id="themeBtn"  type="button" title="Toggle theme">☀</button>
+    <button class="icon-btn" id="fsDownBtn" type="button" title="Yazıyı küçült">A-</button>
+    <button class="icon-btn" id="fsUpBtn"   type="button" title="Yazıyı büyüt">A+</button>
+    <button class="icon-btn" id="infoBtn"   type="button" title="Hakkında">ℹ</button>
+    <button class="icon-btn" id="themeBtn"  type="button" title="Temayı değiştir">☀</button>
   </div>
 </header>
 
 <!-- CONTROLS -->
 <div class="controls">
   <div class="mode-row">
-    <button class="mode-btn on" id="modeMain"     type="button">📖 1000 Duas</button>
-    <button class="mode-btn"   id="modePersonal"  type="button">✍️ My Duas</button>
+    <button class="mode-btn on" id="modeMain"     type="button">📖 1000 Dua</button>
+    <button class="mode-btn"   id="modePersonal"  type="button">✍️ Benim Dualarım</button>
   </div>
   <div class="search-wrap">
     <input class="search-input" type="search" id="searchInput"
-      placeholder="Search duas…"
+      placeholder="Dua ara…"
       autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
-    <button class="clear-btn" id="clearSearch" type="button" aria-label="Clear">✕</button>
+    <button class="clear-btn" id="clearSearch" type="button" aria-label="Temizle">✕</button>
   </div>
   <div class="filter-row">
-    <select class="section-select" id="sectionSelect" aria-label="Filter by section"></select>
-    <button class="fav-filter-btn" id="favFilterBtn" type="button">♡ Favorites</button>
+    <select class="section-select" id="sectionSelect" aria-label="Bölüme göre filtrele"></select>
+    <button class="fav-filter-btn" id="favFilterBtn" type="button">♡ Favoriler</button>
   </div>
   <div class="fontsize-row">
-    <span class="fs-label" id="fsLabel">Text size: Medium</span>
+    <span class="fs-label" id="fsLabel">Yazı boyutu: Orta</span>
   </div>
   <div class="filter-status" id="filterStatus"></div>
 </div>
 
 <!-- ADD DUA PANEL (personal mode) -->
 <div class="add-panel" id="addPanel">
-  <div class="add-panel-title">✍️ Add Personal Dua</div>
+  <div class="add-panel-title">✍️ Kişisel Dua Ekle</div>
   <div class="add-field">
-    <label>English / Translation <span style="color:var(--del)">*</span></label>
-    <textarea class="add-textarea" id="addEnglish" placeholder="Enter the dua in English or any language…" rows="3"></textarea>
+    <label>Türkçe / Çeviri <span style="color:var(--del)">*</span></label>
+    <textarea class="add-textarea" id="addEnglish" placeholder="Duayı Türkçe veya dilediğiniz dilde yazın…" rows="3"></textarea>
   </div>
   <div class="add-field">
-    <label>Arabic (optional)</label>
+    <label>Arapça (isteğe bağlı)</label>
     <textarea class="add-textarea rtl" id="addArabic" placeholder="أدخل الدعاء بالعربية (اختياري)" rows="3" dir="rtl" lang="ar"></textarea>
   </div>
   <div class="add-field">
-    <label>Category / Topic (optional)</label>
-    <input class="add-input" type="text" id="addCategory" placeholder="e.g. Health, Family, Career…">
+    <label>Kategori / Konu (isteğe bağlı)</label>
+    <input class="add-input" type="text" id="addCategory" placeholder="örn. Sağlık, Aile, İş…">
   </div>
   <div class="add-actions">
-    <button class="add-save-btn"   id="addSaveBtn"   type="button">Save Dua</button>
-    <button class="add-cancel-btn" id="addCancelBtn" type="button">Cancel</button>
+    <button class="add-save-btn"   id="addSaveBtn"   type="button">Duayı Kaydet</button>
+    <button class="add-cancel-btn" id="addCancelBtn" type="button">İptal</button>
   </div>
 </div>
 
@@ -650,8 +650,8 @@ header{
     <div class="card-top">
       <div class="section-badge" id="sectionBadge"></div>
       <div class="card-btns">
-        <button class="del-btn" id="delBtn" type="button" aria-label="Delete" hidden>🗑</button>
-        <button class="fav-btn" id="favBtn" type="button" aria-label="Favorite">♡</button>
+        <button class="del-btn" id="delBtn" type="button" aria-label="Sil" hidden>🗑</button>
+        <button class="fav-btn" id="favBtn" type="button" aria-label="Favori">♡</button>
       </div>
     </div>
     <div class="arabic-text" id="arabicText" dir="rtl" lang="ar"></div>
@@ -662,40 +662,40 @@ header{
 
 <!-- NAVIGATION -->
 <div class="nav-row">
-  <button class="nav-btn" id="prevBtn" type="button">◀ Prev</button>
+  <button class="nav-btn" id="prevBtn" type="button">◀ Önceki</button>
   <div class="progress-wrap">
     <div class="progress-text" id="progressText"></div>
     <div class="progress-bar" role="progressbar">
       <div class="progress-fill" id="progressFill"></div>
     </div>
   </div>
-  <button class="nav-btn" id="nextBtn" type="button">Next ▶</button>
+  <button class="nav-btn" id="nextBtn" type="button">Sonraki ▶</button>
 </div>
 
 <!-- BOTTOM ROW -->
 <div class="bottom-row">
-  <button class="random-btn" id="randomBtn" type="button">⚡ Random</button>
-  <button class="reset-btn"  id="resetBtn"  type="button">↺ Reset</button>
+  <button class="random-btn" id="randomBtn" type="button">⚡ Rastgele</button>
+  <button class="reset-btn"  id="resetBtn"  type="button">↺ Sıfırla</button>
 </div>
 
 <!-- FLOATING ADD BUTTON -->
-<button class="add-dua-btn" id="addDuaBtn" type="button" title="Add new dua" aria-label="Add dua">+</button>
+<button class="add-dua-btn" id="addDuaBtn" type="button" title="Yeni dua ekle" aria-label="Dua ekle">+</button>
 
 <!-- INFO MODAL -->
 <div class="modal-overlay" id="infoModal">
   <div class="modal-box">
-    <div class="modal-title">1000 Duas – Arafah Collection</div>
-    <div class="modal-subtitle">Offline Flashcard App</div>
+    <div class="modal-title">1000 Dua – Arefe Koleksiyonu</div>
+    <div class="modal-subtitle">Çevrimdışı Dua Kartları Uygulaması</div>
     <div class="modal-body">
-      <p>This app contains 1,000 duas for reflection, worship, and supplication during Arafah and throughout the year. All data is embedded locally — no internet connection is required.</p>
-      <p>Always verify the authenticity of duas with trusted Islamic scholarship. This app is provided for personal spiritual use and is not affiliated with any organisation.</p>
+      <p>Bu uygulama, Arefe günü ve yıl boyunca tefekkür, ibadet ve dua için hazırlanmış 1.000 dua içerir. Tüm veriler yerel olarak gömülüdür — internet bağlantısı gerekmez.</p>
+      <p>Duaların güvenilirliğini her zaman güvenilir İslami ilim kaynaklarıyla teyit edin. Bu uygulama kişisel manevi kullanım için sunulmuştur ve herhangi bir kurumla bağlantılı değildir.</p>
     </div>
     <hr class="modal-divider">
     <a class="linkedin-btn" href="https://www.reddit.com/user/Hanuonbenz/" target="_blank" rel="noopener">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
-      Visit Reddit Profile
+      Reddit Profilini Ziyaret Et
     </a>
-    <button class="modal-close-btn" id="modalCloseBtn" type="button">Close</button>
+    <button class="modal-close-btn" id="modalCloseBtn" type="button">Kapat</button>
   </div>
 </div>
 
@@ -708,11 +708,11 @@ var DUAS = __DUAS_DATA__;
 
 /* ── FONT SIZE CONFIG ── */
 var FS_LEVELS = [
-  {label:'X-Small', en:'0.80rem', ar:'1.15rem'},
-  {label:'Small',   en:'0.88rem', ar:'1.28rem'},
-  {label:'Medium',  en:'0.96rem', ar:'1.45rem'},
-  {label:'Large',   en:'1.08rem', ar:'1.65rem'},
-  {label:'X-Large', en:'1.22rem', ar:'1.88rem'}
+  {label:'Çok Küçük', en:'0.80rem', ar:'1.15rem'},
+  {label:'Küçük',   en:'0.88rem', ar:'1.28rem'},
+  {label:'Orta',  en:'0.96rem', ar:'1.45rem'},
+  {label:'Büyük',   en:'1.08rem', ar:'1.65rem'},
+  {label:'Çok Büyük', en:'1.22rem', ar:'1.88rem'}
 ];
 var FS_DEFAULT = 2;
 
@@ -821,7 +821,7 @@ function applyFontSize(){
   var lv=FS_LEVELS[S.fsLevel];
   document.getElementById('arabicText').style.fontSize=lv.ar;
   document.getElementById('englishText').style.fontSize=lv.en;
-  fsLabel.textContent='Text size: '+lv.label;
+  fsLabel.textContent='Yazı boyutu: '+lv.label;
 }
 document.getElementById('fsDownBtn').addEventListener('click',function(){
   if(S.fsLevel>0){S.fsLevel--;applyFontSize();persist();}
@@ -852,7 +852,7 @@ function switchMode(mode){
   document.getElementById('searchInput').value='';
   document.getElementById('clearSearch').classList.remove('visible');
   favFilterBtn.classList.remove('on');
-  favFilterBtn.textContent='♡ Favorites';
+  favFilterBtn.textContent='♡ Favoriler';
   closeAddPanel();
   applyModeUI();
   rebuildSectionSelect();
@@ -871,7 +871,7 @@ function rebuildSectionSelect(){
   var total=src.length;
   var sm=getSectionMap();
   var secs=Object.values(sm);
-  sectionSelect.innerHTML='<option value="">All ('+(S.mode==='personal'?'My ':'')+total+' duas)</option>'+
+  sectionSelect.innerHTML='<option value="">Tümü ('+(S.mode==='personal'?'Benim ':'')+total+' dua)</option>'+
     secs.map(function(s){return '<option value="'+s.id+'">'+escHtml(s.title)+'</option>';}).join('');
   if(S.sectionId) sectionSelect.value=S.sectionId;
 }
@@ -930,13 +930,13 @@ function render(){
     elCard.hidden=true;
     elNoRes.hidden=false;
     if(personal&&S.personalDuas.length===0){
-      elNoRes.innerHTML='<div>No personal duas yet.</div><button class="add-first-btn" id="addFirstBtn" type="button">+ Add Your First Dua</button>';
+      elNoRes.innerHTML='<div>Henüz kişisel dua yok.</div><button class="add-first-btn" id="addFirstBtn" type="button">+ İlk Duanı Ekle</button>';
       var afb=document.getElementById('addFirstBtn');
       if(afb)afb.addEventListener('click',openAddPanel);
     } else if(S.showFavOnly){
-      elNoRes.textContent='No favorites yet. Tap ♥ on any dua.';
+      elNoRes.textContent='Henüz favori yok. Herhangi bir duada ♥ simgesine dokunun.';
     } else {
-      elNoRes.textContent='No duas match your search.';
+      elNoRes.textContent='Aramanızla eşleşen dua yok.';
     }
     elProgTxt.textContent='0 / 0';
     elProgFil.style.width='0%';
@@ -951,7 +951,7 @@ function render(){
   var total=S.filtered.length;
   var pos=S.idx+1;
 
-  elBadge.innerHTML=escHtml(d.sectionTitle||'Personal Dua')+
+  elBadge.innerHTML=escHtml(d.sectionTitle||'Kişisel Dua')+
     (d.sectionTitleAr?'<span class="section-badge-ar">'+escHtml(d.sectionTitleAr)+'</span>':'');
   elBadge.className='section-badge'+(personal?' personal-badge':'');
 
@@ -962,7 +962,7 @@ function render(){
   elEnglish.style.paddingTop=d.arabic?'':'0';
   elEnglish.style.borderTop=d.arabic?'':'none';
 
-  elCardNum.textContent=(personal?'My Dua':'Dua')+(personal?'':', #'+d.id+' of 1000');
+  elCardNum.textContent=(personal?'Benim Duam':'Dua')+(personal?'':', #'+d.id+' / 1000');
 
   elCard.className='card'+(personal?' personal-card':'');
 
@@ -981,9 +981,9 @@ function render(){
   var sm=getSectionMap();
   var parts=[];
   if(S.sectionId&&sm[S.sectionId])parts.push(sm[S.sectionId].title);
-  if(S.showFavOnly)parts.push('Favorites');
+  if(S.showFavOnly)parts.push('Favoriler');
   if(S.query.trim())parts.push('"'+S.query.trim()+'"');
-  elStatus.textContent=parts.length?total+' dua'+(total!==1?'s':'')+' · '+parts.join(' · '):'';
+  elStatus.textContent=parts.length?total+' dua · '+parts.join(' · '):'';
 }
 
 /* ── NAVIGATION ── */
@@ -1015,7 +1015,7 @@ document.getElementById('resetBtn').addEventListener('click',function(){
   document.getElementById('clearSearch').classList.remove('visible');
   sectionSelect.value='';
   favFilterBtn.classList.remove('on');
-  favFilterBtn.textContent='♡ Favorites';
+  favFilterBtn.textContent='♡ Favoriler';
   applyFilter(null);render();persist();
 });
 
@@ -1030,7 +1030,7 @@ elFavBtn.addEventListener('click',function(){
 /* ── DELETE (personal) ── */
 elDelBtn.addEventListener('click',function(){
   var d=S.filtered[S.idx];if(!d)return;
-  if(!confirm('Delete this personal dua?'))return;
+  if(!confirm('Bu kişisel dua silinsin mi?'))return;
   S.personalDuas=S.personalDuas.filter(function(x){return x.id!==d.id;});
   delFav(d.id);
   rebuildSectionSelect();
@@ -1042,7 +1042,7 @@ elDelBtn.addEventListener('click',function(){
 favFilterBtn.addEventListener('click',function(){
   S.showFavOnly=!S.showFavOnly;
   favFilterBtn.classList.toggle('on',S.showFavOnly);
-  favFilterBtn.textContent=S.showFavOnly?'♥ Favorites':'♡ Favorites';
+  favFilterBtn.textContent=S.showFavOnly?'♥ Favoriler':'♡ Favoriler';
   applyFilter();render();persist();
 });
 
@@ -1085,10 +1085,10 @@ document.getElementById('addSaveBtn').addEventListener('click',function(){
   var eng=document.getElementById('addEnglish').value.trim();
   var ar=document.getElementById('addArabic').value.trim();
   var cat=document.getElementById('addCategory').value.trim();
-  if(!eng){alert('Please enter at least the English / translation text.');return;}
+  if(!eng){alert('Lütfen en azından Türkçe / çeviri metnini girin.');return;}
   var id=Date.now();
   var sid=cat?cat.toLowerCase().replace(/\s+/g,'-'):'personal';
-  var newDua={id:id,sectionId:sid,sectionTitle:cat||'Personal Dua',sectionTitleAr:'',text:eng,arabic:ar};
+  var newDua={id:id,sectionId:sid,sectionTitle:cat||'Kişisel Dua',sectionTitleAr:'',text:eng,arabic:ar};
   S.personalDuas.push(newDua);
   closeAddPanel();
   rebuildSectionSelect();
@@ -1142,7 +1142,7 @@ applyFontSize();
 applyModeUI();
 
 /* Restore UI controls */
-if(S.showFavOnly){favFilterBtn.classList.add('on');favFilterBtn.textContent='♥ Favorites';}
+if(S.showFavOnly){favFilterBtn.classList.add('on');favFilterBtn.textContent='♥ Favoriler';}
 if(S.query){searchInput.value=S.query;clearBtn.classList.add('visible');}
 
 rebuildSectionSelect();
@@ -1165,13 +1165,13 @@ render();
 
 
 def main():
-    print('Data dir:', DATA_DIR)
+    print('Veri klasörü:', DATA_DIR)
     if not os.path.isdir(DATA_DIR):
-        print('ERROR: Data directory not found:', DATA_DIR)
+        print('HATA: Veri klasörü bulunamadı:', DATA_DIR)
         sys.exit(1)
 
     duas = normalize_duas()
-    print('Normalized', len(duas), 'duas')
+    print('Hazırlandı:', len(duas), 'dua')
 
     os.makedirs(OUT_DIR, exist_ok=True)
     duas_json = json.dumps(duas, ensure_ascii=False)
@@ -1181,8 +1181,8 @@ def main():
         f.write(html)
 
     size_kb = os.path.getsize(OUT_FILE) / 1024
-    print('Generated:', OUT_FILE, '(%.1f KB)' % size_kb)
-    print('Done.')
+    print('Oluşturuldu:', OUT_FILE, '(%.1f KB)' % size_kb)
+    print('Tamamlandı.')
 
 
 if __name__ == '__main__':
